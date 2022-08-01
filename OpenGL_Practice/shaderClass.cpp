@@ -1,25 +1,18 @@
-#include "shaderClass.h"
+#include"shaderClass.h"
 
-std::string get_file_contents(const char* filename) {
+std::string get_file_contents(const char* filename)
+{
 	std::ifstream in(filename, std::ios::binary);
-
-	if (in) {
+	if (in)
+	{
 		std::string contents;
-
-		// Get file string size and resize contents array to correct amount
 		in.seekg(0, std::ios::end);
 		contents.resize(in.tellg());
-
-		// Go back to position 0 and read file
 		in.seekg(0, std::ios::beg);
 		in.read(&contents[0], contents.size());
-
-		// Close file
 		in.close();
-
-		return contents;
+		return(contents);
 	}
-
 	throw(errno);
 }
 
@@ -48,6 +41,7 @@ Shader::Shader(const char* vertexFile, const char* fragmentFile) {
 
 	glDeleteShader(vertexShader);
 	glDeleteShader(fragmentShader);
+
 }
 
 void Shader::Activate() {
@@ -60,24 +54,18 @@ void Shader::Delete() {
 
 void Shader::compileErrors(unsigned int shader, const char* type)
 {
-	// Stores status of compilation
 	GLint hasCompiled;
-	// Character array to store error message in
 	char infoLog[1024];
-	if (type != "PROGRAM")
-	{
+
+	if (type != "PROGRAM") {
 		glGetShaderiv(shader, GL_COMPILE_STATUS, &hasCompiled);
-		if (hasCompiled == GL_FALSE)
-		{
+		if (hasCompiled == GL_FALSE) {
 			glGetShaderInfoLog(shader, 1024, NULL, infoLog);
 			std::cout << "SHADER_COMPILATION_ERROR for:" << type << "\n" << infoLog << std::endl;
 		}
-	}
-	else
-	{
+	} else {
 		glGetProgramiv(shader, GL_LINK_STATUS, &hasCompiled);
-		if (hasCompiled == GL_FALSE)
-		{
+		if (hasCompiled == GL_FALSE) {
 			glGetProgramInfoLog(shader, 1024, NULL, infoLog);
 			std::cout << "SHADER_LINKING_ERROR for:" << type << "\n" << infoLog << std::endl;
 		}

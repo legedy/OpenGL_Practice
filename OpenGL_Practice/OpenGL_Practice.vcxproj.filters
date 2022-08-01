@@ -42,6 +42,9 @@
     <ClCompile Include="glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="vertex.glsl">
@@ -64,9 +67,12 @@
     <ClInclude Include="VertArr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="drak.jfif">
+    <Image Include="..\..\..\..\Downloads\kanye.png">
       <Filter>Resource Files\Textures</Filter>
     </Image>
   </ItemGroup>
