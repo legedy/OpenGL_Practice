@@ -80,8 +80,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>D:\VS2019\OpenGL_Practice\OpenGL_Practice\Libraries\include;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\VS2019\OpenGL_Practice\OpenGL_Practice\Libraries\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\eee\source\repos\OpenGL_Practice\OpenGL_Practice\Libraries\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\eee\source\repos\OpenGL_Practice\OpenGL_Practice\Libraries\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -164,7 +164,7 @@
     <ClInclude Include="VertBuffer.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="C:\Users\no\Downloads\kumalala.jpg" />
+    <Image Include="drak.jfif" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

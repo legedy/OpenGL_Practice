@@ -15,7 +15,8 @@ int main() {
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-	GLfloat vertices[] = {
+	GLfloat vertices[] = 
+	{//		Coords					Colors (RGB)
 		-0.5f, -0.5f, 0.0f,		0.8f, 0.3f,  0.2f,
 		-0.5f,  0.5f, 0.0f,		0.8f, 0.3f,  0.2f,
 		 0.5f,  0.5f, 0.0f,		1.0f, 0.6f,  0.32f,
@@ -54,6 +55,14 @@ int main() {
 	VAO.Unbind();
 	VBO.Unbind();
 	EBO.Unbind();
+
+	GLuint uniID = glGetUniformLocation(shaderProgram.ID, "scale");
+
+	int widthImg, heightImg, numColCh;
+
+	unsigned char* bytes = stbi_load("drak.jfif", &widthImg, &heightImg, &numColCh, 0);
+
+	glGenTextures(1, *bytes);
 
 	while (!glfwWindowShouldClose(window)) {
 		glClearColor(0.1f, 0.1f, 0.2f, 0.0f);
