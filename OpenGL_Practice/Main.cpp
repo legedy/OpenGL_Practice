@@ -7,6 +7,7 @@
 #include<glm/gtc/matrix_transform.hpp>
 #include<glm/gtc/type_ptr.hpp>
 
+#include"CameraClass.h"
 #include"Texture.h"
 #include"shaderClass.h"
 #include"VertArr.h"
@@ -29,7 +30,7 @@ GLfloat vertices[] =
 
 GLuint indices[] = {
 	0, 1, 2,
-	0, 2, 3,
+	2, 0, 3,
 	0, 1, 4,
 	1, 2, 4,
 	2, 3, 4,
@@ -73,41 +74,27 @@ int main() {
 	VBO.Unbind();
 	EBO.Unbind();
 
-	GLuint uniID = glGetUniformLocation(shaderProgram.ID, "scale");
-
 	Texture poop("kanye.png", GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
 	poop.texUnit(shaderProgram, "tex0", 0);
 
 	glEnable(GL_DEPTH_TEST);
+
+	Camera camera = Camera(width, height, glm::vec3(0, 0, -2));
 
 	while (!glfwWindowShouldClose(window)) {
 		double currentTime = std::clock();
 
 		double deltaTime = (currentTime - lastTime) / 1000;
 		double timePassed = (currentTime - startClock) / 1000;
-		std::cout << (1 / deltaTime) << "\n";
+		//std::cout << (1 / deltaTime) << "\n";
 
 		glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		shaderProgram.Activate();
 
-		glm::mat4 model = glm::mat4(1.0f);
-		glm::mat4 view = glm::mat4(1.0f);
-		glm::mat4 proj = glm::mat4(1.0f);
+		camera.Inputs(window, (float)deltaTime);
+		camera.Matrix(45.0f, 0.1f, 100.0f, shaderProgram, "camMatrix");
 
-		model = glm::translate(model, glm::vec3(0, 0.5f, -1));
-		model = glm::rotate(model, glm::radians((float)(timePassed * 45)), glm::vec3(1,1,1));
-		view = glm::translate(view, glm::vec3(0, -0.5f, -2.0f));
-		proj = glm::perspective(glm::radians(45.0f), ratio, 0.1f, 100.0f);
-
-		int modelPos = glGetUniformLocation(shaderProgram.ID, "model");
-		glUniformMatrix4fv(modelPos, 1, GL_FALSE, glm::value_ptr(model));
-		int viewPos = glGetUniformLocation(shaderProgram.ID, "view");
-		glUniformMatrix4fv(viewPos, 1, GL_FALSE, glm::value_ptr(view));
-		int projPos = glGetUniformLocation(shaderProgram.ID, "proj");
-		glUniformMatrix4fv(projPos, 1, GL_FALSE, glm::value_ptr(proj));
-
-		glUniform1f(uniID, 0.5f);
 		poop.Bind();
 		VAO.Bind();
 		glDrawElements(GL_TRIANGLES, sizeof(indices) / sizeof(int), GL_UNSIGNED_INT, 0);

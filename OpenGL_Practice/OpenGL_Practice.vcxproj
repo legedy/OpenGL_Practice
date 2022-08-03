@@ -145,6 +145,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CameraClass.cpp" />
     <ClCompile Include="ElemBuffer.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="Main.cpp" />
@@ -159,6 +160,7 @@
     <None Include="vertex.glsl" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CameraClass.h" />
     <ClInclude Include="ElemBuffer.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="shaderClass.h" />
@@ -167,6 +169,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\..\..\Downloads\kanye.png" />
+    <Image Include="kumalala.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
