@@ -24,11 +24,14 @@ public:
 	int height;
 
 	float speed = 0.1f;
-	float sensitivity = 100.0f;
+	float sensitivity = 1500.0f;
 
-	Camera(int width, int height, glm::vec3 position);
+	Camera(GLFWwindow* window, int width, int height, glm::vec3 position);
 
 	void Matrix(float FOVdeg, float nearPlane, float farPlane, Shader& shader, const char* uniform);
 	void Inputs(GLFWwindow* window, float deltaTime);
+
+private:
+	static void _OnMouseMoved(GLFWwindow* window, double xpos, double ypos);
 };
 #endif

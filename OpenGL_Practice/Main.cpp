@@ -79,7 +79,7 @@ int main() {
 
 	glEnable(GL_DEPTH_TEST);
 
-	Camera camera = Camera(width, height, glm::vec3(0, 0, -2));
+	Camera camera = Camera(window, width, height, glm::vec3(0, 0, -2));
 
 	while (!glfwWindowShouldClose(window)) {
 		double currentTime = std::clock();
