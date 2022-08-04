@@ -11,8 +11,7 @@
 
 #include"shaderClass.h"
 
-class Camera
-{
+class Camera {
 public:
 	glm::vec3 Position;
 	glm::vec3 LookVector = glm::vec3(0.0f, 0.0f, -1.0f);
@@ -35,4 +34,5 @@ private:
 	void _OnMouseMoved(GLFWwindow* window, double xpos, double ypos);
 	void _OnMousePressed(GLFWwindow* window, int button, int action, int mods);
 };
+
 #endif
