@@ -1,11 +1,14 @@
 #include"CameraClass.h"
 
+bool Camera::mousePressed = false;
 
-Camera::Camera(GLFWwindow* window, int width, int height, glm::vec3 position) {Camera::width = width;
+Camera::Camera(GLFWwindow* window, int width, int height, glm::vec3 position) {
+	Camera::width = width;
 	Camera::height = height;
 	Position = position;
 
 	glfwSetCursorPosCallback(window, _OnMouseMoved);
+	glfwSetMouseButtonCallback(window, _OnMousePressed);
 }
 
 void Camera::Matrix(float FOVdeg, float nearPlane, float farPlane, Shader& shader, const char* uniform) {
@@ -17,8 +20,6 @@ void Camera::Matrix(float FOVdeg, float nearPlane, float farPlane, Shader& shade
 
 	glUniformMatrix4fv(glGetUniformLocation(shader.ID, uniform), 1, GL_FALSE, glm::value_ptr(projection * view));
 }
-
-
 
 void Camera::Inputs(GLFWwindow* window, float deltaTime) {
 	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
@@ -48,9 +49,9 @@ void Camera::Inputs(GLFWwindow* window, float deltaTime) {
 	if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS) {
 		glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
 
-		if (firstClick) {
+		if (mousePressed) {
 			glfwSetCursorPos(window, (width / 2), (height / 2));
-			firstClick = false;
+			mousePressed = false;
 		}
 
 		double mouseX;
@@ -70,10 +71,26 @@ void Camera::Inputs(GLFWwindow* window, float deltaTime) {
 		glfwSetCursorPos(window, (width / 2), (height / 2));
 	} else if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_RELEASE) {
 		glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
-		firstClick = true;
+		mousePressed = true;
 	}
 }
 
 void Camera::_OnMouseMoved(GLFWwindow* window, double xpos, double ypos) {
-	std::cout << xpos << "	" << ypos << "\n";
+	std::cout << mousePressed;
+	if (mousePressed) {
+		//std::cout << xpos << "	" << ypos << "\n";
+	} else {
+		std::cout << "no";
+	}
+}
+
+void Camera::_OnMousePressed(GLFWwindow* window, int button, int action, int mods) {
+	if (button == GLFW_MOUSE_BUTTON_LEFT) {
+		if (action == GLFW_PRESS)
+			mousePressed = true;
+		else
+			mousePressed = false;
+		
+		std::cout << mousePressed << "\n";
+	}
 }

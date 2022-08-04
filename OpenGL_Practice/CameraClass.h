@@ -18,7 +18,7 @@ public:
 	glm::vec3 LookVector = glm::vec3(0.0f, 0.0f, -1.0f);
 	glm::vec3 UpVector = glm::vec3(0.0f, 1.0f, 0.0f);
 
-	bool firstClick = true;
+	static bool mousePressed;
 
 	int width;
 	int height;
@@ -32,6 +32,7 @@ public:
 	void Inputs(GLFWwindow* window, float deltaTime);
 
 private:
-	static void _OnMouseMoved(GLFWwindow* window, double xpos, double ypos);
+	void _OnMouseMoved(GLFWwindow* window, double xpos, double ypos);
+	void _OnMousePressed(GLFWwindow* window, int button, int action, int mods);
 };
 #endif
