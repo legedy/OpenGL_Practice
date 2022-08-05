@@ -2,7 +2,7 @@
 #include"Inputs.h"
 
 Input::Input(GLFWwindow* window) {
-	glfwSetWindowUserPointer(window, static_cast<void*>(this));
+	//glfwSetWindowUserPointer(window, static_cast<void*>(this));
 	glfwSetKeyCallback(window, _onKeyPress);
 }
 
@@ -103,5 +103,6 @@ void Input::_onKeyPress(GLFWwindow* win, int key, int scancode, int action, int 
 }
 
 void Input::USER_POINTER_EXCEPTION() {
-	throw ("GLFW window user pointer not initialized.");
+	std::cout << "GLFW window user pointer not initialized." << std::endl;
+	throw NULL;
 }
