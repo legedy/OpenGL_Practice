@@ -7,8 +7,8 @@ Camera::Camera(GLFWwindow* window, int width, int height, glm::vec3 position) {
 	Camera::height = height;
 	Position = position;
 
-	glfwSetCursorPosCallback(window, _OnMouseMoved);
-	glfwSetMouseButtonCallback(window, _OnMousePressed);
+	//glfwSetCursorPosCallback(window, _OnMouseMoved);
+	//glfwSetMouseButtonCallback(window, _OnMousePressed);
 }
 
 void Camera::Matrix(float FOVdeg, float nearPlane, float farPlane, Shader& shader, const char* uniform) {

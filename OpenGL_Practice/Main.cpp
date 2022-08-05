@@ -1,4 +1,7 @@
 #include<iostream>
+#include<vector>
+#include<map>
+
 #include<glad/glad.h>
 #include<GLFW/glfw3.h>
 #include<stb/stb_image.h>
@@ -7,6 +10,7 @@
 #include<glm/gtc/matrix_transform.hpp>
 #include<glm/gtc/type_ptr.hpp>
 
+#include"Inputs.h"
 #include"CameraClass.h"
 #include"Texture.h"
 #include"shaderClass.h"
@@ -41,8 +45,6 @@ double lastTime = std::clock();
 const double startClock = lastTime;
 
 int main() {
-	std::vector<int(*)(int, int)> vec;
-
 	glfwInit();
 
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -82,6 +84,10 @@ int main() {
 	glEnable(GL_DEPTH_TEST);
 
 	Camera camera = Camera(window, width, height, glm::vec3(0, 0, -2));
+	Input input = Input(window);
+	input.registerKey(GLFW_KEY_L, [](GLFWwindow* window, int state) {
+		std::cout << state << std::endl;
+	});
 
 	while (!glfwWindowShouldClose(window)) {
 		double currentTime = std::clock();
