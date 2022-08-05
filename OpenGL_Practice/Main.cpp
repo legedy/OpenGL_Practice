@@ -41,6 +41,8 @@ double lastTime = std::clock();
 const double startClock = lastTime;
 
 int main() {
+	std::vector<int(*)(int, int)> vec;
+
 	glfwInit();
 
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
