@@ -2,7 +2,11 @@
 #include"Inputs.h"
 
 Input::Input(GLFWwindow* window) {
-	//glfwSetWindowUserPointer(window, static_cast<void*>(this));
+	glfwSetWindowUserPointer(window, static_cast<void*>(this));
+
+	glfwSetScrollCallback(window, _onScroll);
+	glfwSetCursorPosCallback(window, _onMouseMoved);
+	glfwSetMouseButtonCallback(window, _onMousePress);
 	glfwSetKeyCallback(window, _onKeyPress);
 }
 
@@ -34,8 +38,7 @@ void Input::registerKey(int key, keyPressCallback callback) {
 		vector.push_back(callback);
 
 		keyPressCallbacks[key] = vector;
-	}
-	else {
+	} else {
 		keyPressCallbacks[key].push_back(callback);
 	}
 
@@ -56,6 +59,7 @@ void Input::onMouseMoved(GLFWwindow* window, double x, double y) {
 
 void Input::onMousePress(GLFWwindow* window, int button, int state) {
 	// If it finds the button id array, do (...)
+
 	if (mousePressCallbacks.find(button) != mousePressCallbacks.end()) {
 		for (mousePressCallback func : mousePressCallbacks[button]) {
 			func(window, state);
@@ -65,6 +69,7 @@ void Input::onMousePress(GLFWwindow* window, int button, int state) {
 
 void Input::onKeyPress(GLFWwindow* window, int key, int scancode, int state) {
 	// If it finds the key id array, do (...)
+
 	if (keyPressCallbacks.find(key) != keyPressCallbacks.end()) {
 		for (keyPressCallback func : keyPressCallbacks[key]) {
 			func(window, state);
@@ -87,7 +92,7 @@ void Input::_onMouseMoved(GLFWwindow* win, double xPos, double yPos) {
 		handler->onMouseMoved(win, xPos, yPos);
 	} else handler->USER_POINTER_EXCEPTION();
 }
-void Input::_onMousePress(GLFWwindow* win, int button, int action) {
+void Input::_onMousePress(GLFWwindow* win, int button, int action, int mod) {
 	Input* handler = static_cast<Input*>(glfwGetWindowUserPointer(win));
 
 	if (handler) {

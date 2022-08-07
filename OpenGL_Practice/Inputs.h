@@ -1,16 +1,17 @@
 #ifndef INPUT_CLASS_H
 #define INPUT_CLASS_H
 
+#include<functional>
 #include<vector>
 #include<map>
 
 #include<glad/glad.h>
 #include<GLFW/glfw3.h>
 
-typedef void(*scrollCallback)(GLFWwindow* window, double x, double y);
-typedef void(*mouseMoveCallback)(GLFWwindow* window, double x, double y);
-typedef void(*mousePressCallback)(GLFWwindow* window, int state);
-typedef void(*keyPressCallback)(GLFWwindow* window, int state);
+typedef std::function<void(GLFWwindow* window, double x, double y)> scrollCallback;
+typedef std::function<void(GLFWwindow* window, double x, double y)> mouseMoveCallback;
+typedef std::function<void(GLFWwindow* window, int state)> mousePressCallback;
+typedef std::function<void(GLFWwindow* window, int state)> keyPressCallback;
 
 class Input {
 public:
@@ -36,7 +37,7 @@ private:
 	
 	static void _onScroll(GLFWwindow* win, double xOffset, double yOffset);
 	static void _onMouseMoved(GLFWwindow* win, double xPos, double yPos);
-	static void _onMousePress(GLFWwindow* win, int button, int action);
+	static void _onMousePress(GLFWwindow* win, int button, int action, int mod);
 	static void _onKeyPress(GLFWwindow* win, int key, int scancode, int action, int mod);
 
 	void USER_POINTER_EXCEPTION();
