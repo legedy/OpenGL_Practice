@@ -65,12 +65,6 @@
     <None Include="default.frag">
       <Filter>Resource Files\Shaders</Filter>
     </None>
-    <None Include="light.vert">
-      <Filter>Resource Files\Shaders</Filter>
-    </None>
-    <None Include="light.frag">
-      <Filter>Resource Files\Shaders</Filter>
-    </None>
     <None Include="framebuffer.frag">
       <Filter>Resource Files\Shaders</Filter>
     </None>

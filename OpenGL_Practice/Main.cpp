@@ -83,15 +83,15 @@ int main()
 	Shader blurProgram("framebuffer.vert", "blur.frag");
 
 	// Take care of all the light related things
-	glm::vec4 lightColor = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
-	glm::vec3 lightPos = glm::vec3(0.5f, 0.5f, 0.5f);
+	glm::vec4 lightColor = glm::vec4(1.0f, 0.5f, 1.0f, 1.0f);
+	glm::vec3 lightPos = glm::vec3(0.5f, 0.5f, 1.0f);
 
 	shaderProgram.Activate();
 	glUniform4f(glGetUniformLocation(shaderProgram.ID, "lightColor"), lightColor.x, lightColor.y, lightColor.z, lightColor.w);
 	glUniform3f(glGetUniformLocation(shaderProgram.ID, "lightPos"), lightPos.x, lightPos.y, lightPos.z);
 	framebufferProgram.Activate();
 	glUniform1i(glGetUniformLocation(framebufferProgram.ID, "screenTexture"), 0);
-	glUniform1i(glGetUniformLocation(framebufferProgram.ID, "bloomTexture"), 1);
+	glUniform1i(glGetUniformLocation(framebufferProgram.ID, "bloomTexture"), 10);
 	glUniform1f(glGetUniformLocation(framebufferProgram.ID, "gamma"), gamma);
 	blurProgram.Activate();
 	glUniform1i(glGetUniformLocation(blurProgram.ID, "screenTexture"), 0);
@@ -119,7 +119,7 @@ int main()
 	glEnableVertexAttribArray(1);
 	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
 
-	//glfwSwapInterval(0);
+	glfwSwapInterval(0);
 
 	// Create Frame Buffer Object
 	unsigned int postProcessingFBO;

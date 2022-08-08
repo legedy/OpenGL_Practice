@@ -162,8 +162,6 @@
     <None Include="default.geom" />
     <None Include="framebuffer.frag" />
     <None Include="framebuffer.vert" />
-    <None Include="light.frag" />
-    <None Include="light.vert" />
     <None Include="default.frag" />
     <None Include="default.vert" />
   </ItemGroup>
