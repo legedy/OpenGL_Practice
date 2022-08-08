@@ -3,8 +3,8 @@
 #include"Model.h"
 
 
-const unsigned int width = 2000;
-const unsigned int height = 1200;
+const unsigned int width = 1000;
+const unsigned int height = 800;
 
 // Number of samples for MSAA
 unsigned int samples = 8;
@@ -25,10 +25,10 @@ float rectangleVertices[] = {
 
 // Vertices for plane with texture
 std::vector<Vertex> vertices = {
-	Vertex{glm::vec3(-1.0f, -1.0f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec2(0.0f, 0.0f)},
-	Vertex{glm::vec3(-1.0f, 1.0f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec2(0.0f, 1.0f)},
-	Vertex{glm::vec3(1.0f, 1.0f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec2(1.0f, 1.0f)},
-	Vertex{glm::vec3(1.0f, -1.0f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec2(1.0f, 0.0f)}
+	Vertex{glm::vec3(-10.0f, -10.0f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec2(0.0f, 0.0f)},
+	Vertex{glm::vec3(-10.0f,  10.0f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec2(0.0f, 1.0f)},
+	Vertex{glm::vec3( 10.0f,  10.0f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec2(1.0f, 1.0f)},
+	Vertex{glm::vec3( 10.0f, -10.0f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec2(1.0f, 0.0f)}
 };
 
 // Indices for plane with texture
@@ -55,7 +55,7 @@ int main()
 	// So that means we only have the modern functions
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-	// Create a GLFWwindow object of 800 by 800 pixels, naming it "YoutubeOpenGL"
+
 	GLFWwindow* window = glfwCreateWindow(width, height, "poop", NULL, NULL);
 	// Error check if the window fails to create
 	if (window == NULL)
@@ -224,7 +224,7 @@ int main()
 		// Bounce the image data around to blur multiple times
 		bool horizontal = true, first_iteration = true;
 		// Amount of time to bounce the blur
-		int amount = 0;
+		int amount = 2;
 		blurProgram.Activate();
 		for (unsigned int i = 0; i < amount; i++)
 		{

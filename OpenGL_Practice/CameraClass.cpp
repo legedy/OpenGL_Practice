@@ -5,7 +5,7 @@ Camera::Camera(GLFWwindow* window, Input& input, int width, int height, glm::vec
 	Camera::height = height;
 	Position = position;
 
-	input.registerMouse(GLFW_MOUSE_BUTTON_RIGHT, [window, width, height, this](GLFWwindow* win, int state) {
+	input.registerMouse(GLFW_MOUSE_BUTTON_LEFT, [window, width, height, this](GLFWwindow* win, int state) {
 		if (state == GLFW_PRESS) {
 			glfwSetCursorPos(window, (width / 2), (height / 2));
 			mousePressed = true;
